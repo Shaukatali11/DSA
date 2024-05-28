@@ -1,0 +1,81 @@
+==> In this repository we are trying to implement four code of binary tree.
+
+1. No of node or size of binary tree.
+2. Sum of present
+3. No of leaf node
+4. No of non leaf node
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+class Node{
+    public:
+    int val;
+    Node* left;
+    Node* right;
+    
+    Node(int data){
+        val= data;
+        left=NULL;
+        right=NULL;
+    }
+};
+
+
+
+int countNoofNode(Node* &root){
+    if(root==NULL){
+        return 0;
+    }
+    return countNoofNode(root->left)+countNoofNode(root->right)+1;
+}
+
+
+
+int sumofNode(Node* &root){
+    if(root==NULL){
+        return 0;
+    }
+    return sumofNode(root->left)+sumofNode(root->right)+root->val;
+}
+
+
+
+int noofleafnode(Node* &root){
+    if(root==NULL){
+        return 0;
+    }
+    if(root->left==NULL && root->right==NULL){
+        return 1;
+    }
+    return noofleafnode(root->left)+noofleafnode(root->right);
+}
+
+
+
+
+int noofNonLeafNode(Node* &root){
+    if(root==NULL || (root->left==NULL && root->right==NULL)){
+        return 0;
+    }
+    return noofNonLeafNode(root->left)+noofNonLeafNode(root->right)+1;
+}
+
+
+int main(){
+    Node* root=new Node(1);
+    root->left=new Node(2);
+    root->right=new Node(3);
+    root->left->left=new Node(4);
+    root->left->right=new Node(5);
+    root->right->left=new Node(6);
+    root->right->right=new Node(7);
+    
+    cout<<"No of node: "<<countNoofNode(root)<<endl;
+    cout<<"Sum of  node value: "<<sumofNode(root)<<endl;
+    cout<<"No of leaf node: " <<noofleafnode(root)<<endl;
+    cout<<"No of non leaf node: "<<noofNonLeafNode(root)<<endl;
+    return 0;
+}
