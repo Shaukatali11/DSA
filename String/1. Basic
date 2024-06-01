@@ -1,0 +1,41 @@
+string in C++ :-
+
+Basic Operations:
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string str = "Hello, World!";
+    cout << "Length: " << str.length();
+    str += " How are you?";
+    cout << "Concatenated String: " << str;
+    cout << "Substring: " << str.substr(0, 5);
+    return 0;
+}
+
+
+==> Common Methods:
+
+length(), size(): Returns the length of the string.
+append(): Appends another string.
+substr(): Returns a substring.
+find(): Finds a substring.
+replace(): Replaces part of the string.
+
+==> String Iteration:
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string str = "Hello, World!";
+    for (char ch : str) {
+        cout << ch << " ";
+    }
+    return 0;
+}
+
+
+
