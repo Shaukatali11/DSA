@@ -1,0 +1,33 @@
+Q1. Explain RAII (Resource Acquisition Is Initialization) in C++ and its benefits.
+RAII is a programming idiom where resource allocation is tied to object lifetime. Resources are acquired in the constructor and released in the destructor. This ensures that 
+resources are properly released when objects go out of scope, preventing resource leaks.
+
+Q2. What are smart pointers in C++? Explain the different types and their uses.
+Smart pointers are objects that manage the lifetime of dynamically allocated memory. They automatically deallocate memory when it is no longer needed.
+
+Q3. Explain the concept of memory alignment and its importance.
+Memory alignment refers to arranging data in memory according to certain boundaries (typically multiples of the word size). Proper alignment can improve performance by reducing 
+the number of memory accesses and avoiding alignment faults.
+
+Q4. How does the new operator work in C++ and what is placement new?
+The new operator allocates memory from the heap and initializes the object. Placement new allows constructing an object at a specific memory location without allocating memory.
+
+Q5. Explain the difference between stack memory and heap memory.
+Stack Memory: Used for static memory allocation (function call stack). It is automatically managed and has limited size.
+Heap Memory: Used for dynamic memory allocation. It is manually managed and has a larger size.
+
+Q6. What are memory leaks and how can they be prevented?
+Memory leaks occur when dynamically allocated memory is not freed, leading to wasted memory. They can be prevented by:
+- Using smart pointers.
+- Ensuring every new has a corresponding delete.
+
+Q7. Explain how a hash table works and its typical use cases.
+A hash table is a data structure that maps keys to values using a hash function. The hash function computes an index into an array of buckets, where the desired value can 
+be found.
+
+Q8. What is a priority queue and how can it be implemented in C++?
+A priority queue is a data structure where each element has a priority, and the element with the highest priority is served first. It can be implemented using a heap.
+
+Q9. What are the differences between a stack and a queue?
+Stack: LIFO (Last In, First Out). Operations: push, pop, top.
+Queue: FIFO (First In, First Out). Operations: enqueue, dequeue, front.
