@@ -1,0 +1,76 @@
+Q1. What is the diamond problem in C++ and how is it resolved?
+The diamond problem occurs in multiple inheritance when a class inherits from two classes that have a common base class, leading to ambiguity. It is resolved using virtual 
+inheritance.
+
+Q2. How can you prevent a class from being inherited in C++?
+Use the final specifier in C++11 and above to prevent a class from being inherited.
+
+class FinalClass final {
+public:
+    void display() {
+        cout << "FinalClass" << endl; 
+    }
+};
+int main() {
+    FinalClass obj;
+    obj.display();
+    return 0;
+}
+
+Q3. What is the difference between a deep copy and a shallow copy?
+Shallow Copy: Copies all member values, including pointers, but does not create copies of dynamically allocated memory.
+Deep Copy: Copies all member values and allocates new memory for dynamically allocated resources, ensuring that copies do not share the same memory.
+
+Q4. What is the purpose of the this pointer in C++?
+The this pointer is an implicit parameter to all member functions. It points to the object for which the member function is called.
+
+Q5. What are the basic concepts of object-oriented programming in C++?
+The fundamental concepts of OOP in C++ are:
+- Encapsulation: Bundling data and methods that operate on the data within a single unit (class).
+- Inheritance: Mechanism by which one class (derived class) inherits properties and behavior from another class (base class).
+- Polymorphism: Ability to process objects differently based on their data type or class. It includes function overloading and operator overloading (compile-time polymorphism) 
+and virtual functions (runtime polymorphism).
+- Abstraction: Hiding complex implementation details and showing only the necessary features of an object.
+
+Q6. Explain the concept of constructors and destructors in C++.
+Constructors: Special member functions of a class that are executed when an object of the class is created. They initialize the object's data members.
+Destructors: Special member functions that are executed when an object goes out of scope or is explicitly deleted. They clean up resources that the object may have acquired 
+during its lifetime.
+
+Q7. What is function overloading in C++?
+Function overloading allows multiple functions to have the same name with different parameters. The correct function is chosen at compile time based on the number 
+and type of arguments.
+
+Q8. What is operator overloading in C++?
+Answer: Operator overloading allows defining custom behaviors for operators when applied to user-defined types (classes). This enables intuitive usage of operators with objects.
+
+Q9. What are inline functions and when should they be used?
+Inline functions are functions defined with the inline keyword, suggesting to the compiler to insert the function's body directly into the code at the point of each 
+call, thus reducing function call overhead.
+
+Q10. What is a friend function in C++?
+A friend function is a function that is not a member of a class but has access to its private and protected members. It is declared using the friend keyword within 
+the class.
+
+Q11. What are virtual functions in C++?
+Virtual functions are member functions declared within a base class and redefined by derived classes. They ensure that the correct function is called for an object, regardless 
+of the type of reference used for function call (base or derived class reference). This facilitates runtime polymorphism.
+
+Q12. Explain the concept of multiple inheritance in C++.
+Multiple inheritance is a feature of C++ where a class can inherit from more than one base class. This allows a derived class to combine and extend functionalities from multiple 
+base classes.
+
+Q13. What is a virtual destructor and why is it needed?
+A virtual destructor ensures that the destructor of the derived class is called when an object is deleted through a base class pointer. This is crucial for proper cleanup of
+resources allocated by derived classes.
+
+Q14. What is a pure virtual function in C++?
+A pure virtual function is a function that has no implementation in the base class and must be implemented by derived classes. It is declared by assigning 0 to the 
+function declaration.
+
+Q15. What are abstract classes in C++?
+An abstract class is a class that cannot be instantiated and usually contains at least one pure virtual function. It is used as a base class for other classes to derive from 
+and implement the pure virtual functions.
+
+
+
