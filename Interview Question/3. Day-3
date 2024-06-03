@@ -1,0 +1,25 @@
+Q1. What is the difference between pre-increment and post-increment operators in C++?
+Pre-increment (++i): Increments the value of i before using it in the expression.
+Post-increment (i++): Uses the current value of i in the expression and then increments it
+
+Q2. What is a union in C++ and how is it different from a struct?
+A union is a special data type that allows storing different data types in the same memory location. Only one member 
+can hold a value at any given time. Unlike a struct, which allocates memory for all its members, a union allocates enough
+memory to hold the largest member.
+
+Q3. What is the difference between std::map and std::unordered_map?
+std::map: Ordered collection of key-value pairs implemented as a balanced binary tree (usually a Red-Black tree). It provides
+logarithmic time complexity for insertions, deletions, and lookups.
+std::unordered_map: Unordered collection of key-value pairs implemented as a hash table. It provides average constant time 
+complexity for insertions, deletions, and lookups.
+
+Q4. What is the difference between struct and class in C++?
+The primary difference is the default access level. In a struct, members are public by default, whereas in a class, 
+members are private by default. Structs are typically used for passive data structures, while classes are used for more 
+complex structures with encapsulation.
+
+Q5. What is the use of static keyword in C++?
+The static keyword can be used in various contexts:
+Static variables in functions: Retain their value between function calls.
+Static member variables: Shared among all instances of a class.
+Static member functions: Can be called without an object and can only access static members of the class.
