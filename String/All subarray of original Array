@@ -1,0 +1,22 @@
+All subarray of original Array:-
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void allsubarray(int arr[],int s){
+  for(int i=0;i<s;i++){
+    for(int j=i; j<s;j++){
+      for(int k=i;k<=j;k++){
+        cout<<arr[k];
+      }
+      cout<<endl;
+    }
+  }
+}
+int main(){
+  int arr[]={1,2,3,4};
+  int s=sizeof(arr)/sizeof(arr[0]);
+  allsubarray(arr,s);
+  return 0;
+}
