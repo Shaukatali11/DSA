@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+using namespace std;
+void firstduplicate(int arr[],int s){
+  map<int ,int>mpp;
+  for(int i=0; i<s;i++){
+    mpp[arr[i]]++;
+    if(mpp[arr[i]]==2){
+      cout<<arr[i];
+      break;
+    }
+  }
+}
+int main(){
+  int arr[]={2,3,4,5,3,5,6};
+  int s=sizeof(arr)/sizeof(arr[0]);
+  firstduplicate(arr,s);
+  return 0;
+}
