@@ -1,0 +1,17 @@
+#include<bits/stdc++.h>
+using namespace std;
+void maxElement(int arr[] , int s){
+  int maxi=0;
+  for(int i=0; i<s;i++){
+    if(arr[i]>maxi){
+      maxi=arr[i];
+    }
+  }
+  cout<<maxi;
+}
+int main(){
+  int arr[]={2,5,4,8,10,98,67};
+  int s=sizeof(arr)/sizeof(arr[0]);
+  maxElement(arr,s);
+  return 0;
+}
