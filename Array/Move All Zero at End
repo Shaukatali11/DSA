@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void moveallzeroatend(int arr[] , int s){
+  int start=0;
+  int end=s-1;
+  while(start<end){
+    if(arr[start]==0){
+      if(arr[end]!=0){
+        swap(arr[start],arr[end]);
+        start++;
+      }
+      else{
+      end--;
+      }
+    }
+    else{
+    start++;
+    }
+  }
+  for(int i=0;i<s;i++){
+    cout<<arr[i];
+  }
+}
+
+int main(){
+  int arr[]={1,2,0,3,4,0,5,0,6,7,0,8};
+  int s=sizeof(arr)/sizeof(arr[0]);
+  moveallzeroatend(arr,s);
+  return 0;
+}
