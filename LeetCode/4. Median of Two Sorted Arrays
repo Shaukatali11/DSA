@@ -1,0 +1,36 @@
+4. Median of Two Sorted Arrays
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+void medianofSortedArray(int arr1[],int s1,int arr2[],int s2){
+  vector<int>merge(s1+s2);
+  int i=0,j=0,k=0;
+  while(i<s1 && j<s2){
+    if(arr1[i]<arr2[j]){
+      merge[k++]=arr1[i++];
+    }else{
+      merge[k++]=arr2[j++];
+    }
+  }
+  while(i<s1){
+    merge[k++]=arr1[i++];
+  }
+  while(j<s2){
+    merge[k++]=arr2[j++];
+  }
+
+  for(int i=0;i<merge.size();i++){
+    cout<<merge[i]<<" ";
+  }
+}
+int main(){
+  int arr1[]={1,2};
+  int s1=sizeof(arr1)/sizeof(arr1[0]);
+  int arr2[]={3,4};
+  int s2=sizeof(arr2)/sizeof(arr2[0]);
+  medianofSortedArray(arr1,s1,arr2,s2);
+}
