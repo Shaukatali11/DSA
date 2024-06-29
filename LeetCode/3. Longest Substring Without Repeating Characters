@@ -1,0 +1,29 @@
+3. Longest Substring Without Repeating Characters
+==> here we use sliding window and use map for requency.
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+string longestStringWithoutRepeatation(string str,int s){
+  int head=0,tail=0,ans=0;
+  unordered_map<char,int>ump;
+  for(int head=0;head<s;head++){
+    ump[str[head]]++;
+    
+    while(ump[str[head]]>1){
+      ans=max(ans,head-tail);
+      ump[str[tail]]--;
+      tail++;
+    }
+  }
+  cout<< ans;
+
+}
+int main(){
+  string str="abcabcbb";
+  int s=str.size();
+  longestStringWithoutRepeatation(str,s);
+
+}
