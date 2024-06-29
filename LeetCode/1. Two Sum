@@ -1,0 +1,27 @@
+1. Two Sum proble:-
+
+Explanation ==> We have an array of integer value and target given there is exactly one pair whose sum is equal to that target.
+
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> targetsum(vector<int>&v, int s,int target){
+  unordered_map<int,int>mpp;
+  for(int i=0;i<s;i++){
+    int rem=target-v[i];
+    if(mpp.find(rem)!=mpp.end()){
+      return {mpp[rem],i};
+    }
+    mpp[v[i]]=i;
+  }
+  return {};
+}
+int main(){
+  vector<int> v ={3,2,10,11,7,15};
+  int s=v.size();
+  int target=9;
+  vector<int> result=targetsum(v,s,target);
+  if(!result.empty()){
+    cout<<result[0]<<" "<<result[1];
+  }
+}
