@@ -1,0 +1,42 @@
+10. Regular Expression Matching
+
+Given an input string s and a pattern p, implement regular expression matching with support for '.' and '*' where:
+
+'.' Matches any single character.​​​​
+'*' Matches zero or more of the preceding element.
+The matching should cover the entire input string (not partial).
+
+ 
+
+Example 1:
+
+Input: s = "aa", p = "a"
+Output: false
+Explanation: "a" does not match the entire string "aa".
+Example 2:
+
+Input: s = "aa", p = "a*"
+Output: true
+Explanation: '*' means zero or more of the preceding element, 'a'. Therefore, by repeating 'a' once, it becomes "aa".
+
+
+--------------------<>--------------------------------<>------------------------------------------<>---------------
+class Solution {
+public:
+    bool matchHelper(const string &s, const string &p, int i, int j) {
+    if (j == p.size()) {
+        return i == s.size();
+    }
+
+    bool firstMatch = (i < s.size() && (p[j] == s[i] || p[j] == '.'));
+    if (j + 1 < p.size() && p[j + 1] == '*') {
+        return (matchHelper(s, p, i, j + 2) || (firstMatch && matchHelper(s, p, i + 1, j)));
+    } else {
+        return firstMatch && matchHelper(s, p, i + 1, j + 1);
+    }
+}
+
+bool isMatch(string s, string p) {
+    return matchHelper(s, p, 0, 0);
+}
+};
