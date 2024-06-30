@@ -1,0 +1,76 @@
+8. String to Integer (atoi)
+
+Example 1:
+
+Input: s = "42"
+
+Output: 42
+
+Explanation:
+
+The underlined characters are what is read in and the caret is the current reader position.
+Step 1: "42" (no characters read because there is no leading whitespace)
+         ^
+Step 2: "42" (no characters read because there is neither a '-' nor '+')
+         ^
+Step 3: "42" ("42" is read in)
+           ^
+Example 2:
+
+Input: s = " -042"
+
+Output: -42
+
+Explanation:
+
+Step 1: "   -042" (leading whitespace is read and ignored)
+            ^
+Step 2: "   -042" ('-' is read, so the result should be negative)
+             ^
+Step 3: "   -042" ("042" is read in, leading zeros ignored in the result)
+               ^
+
+
+
+
+
+
+#include <iostream>
+#include <string>
+#include <climits>
+using namespace std;
+
+int myAtoi(string s) {
+    int i = 0;
+    int n = s.size();
+    int sign = 1;
+    long long result = 0;
+
+    // Step 1: Ignore leading whitespace
+    while (i < n && s[i] == ' ') {
+        i++;
+    }
+
+    // Step 2: Check for sign
+    if (i < n && (s[i] == '-' || s[i] == '+')) {
+        sign = (s[i] == '-') ? -1 : 1;
+        i++;
+    }
+
+    // Step 3: Read the integer
+    while (i < n && isdigit(s[i])) {
+        result = result * 10 + (s[i] - '0');
+        // Step 4: Check for overflow and round accordingly
+        if (result * sign >= INT_MAX) return INT_MAX;
+        if (result * sign <= INT_MIN) return INT_MIN;
+        i++;
+    }
+
+    return result * sign;
+}
+
+int main() {
+    string s = "  -042";
+    cout << myAtoi(s) << endl; // Output: -42
+    return 0;
+}
