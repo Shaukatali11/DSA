@@ -1,0 +1,169 @@
+All Basic linkedlist code:-
+
+we are trying to write function in simple way which may help to crack interview.
+
+
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class Node{
+    public:
+    int val;
+    Node* next;
+    
+    Node(int data){
+        val=data;
+        next=NULL;
+    }
+};
+
+class Linkedlist{
+    public:
+    Node* head;
+    Linkedlist(){
+        head=NULL;
+    }
+    
+    void insertVal(int value){
+        Node* newNode=new Node(value);
+        if(head==NULL){
+            head=newNode;
+            return;
+        }
+        Node* temp=head;
+        while(temp->next){
+            temp=temp->next;
+        }
+        temp->next=newNode;
+    }
+    void display(){
+        Node* temp=head;
+        while(temp!=NULL){
+            cout<<temp->val<<"->";
+            temp=temp->next;
+        }cout<<"NULL"<<endl;
+    }
+    
+};
+
+//1 
+void lengthoflinkedlist(Node* &head){
+    int count=0;
+    Node* temp=head;
+    while(temp!=NULL){
+        count++;
+        temp=temp->next;
+    }
+    cout<<"length of linkedlist "<<count<<endl;
+}
+
+//2 
+
+bool searchelement(Node* &head,int key){
+    Node* temp=head;
+    while(temp!=NULL){
+        if(temp->val==key){
+            return true;
+        }
+        temp=temp->next;
+        
+    }
+    return false;
+    
+    
+}
+
+//insert at front
+
+void insertatfront(Node* &head ,int new_val){
+    Node* frontNode= new Node(new_val);
+    frontNode->next=head;
+    head=frontNode;
+    
+    
+}
+
+//4 insert at tail
+
+void insertattail(Node* &head,int new_val){
+    Node* newnode=new Node(new_val);
+    if(head==NULL){
+        head=newnode;
+        return;
+    }
+    Node* temp=head;
+    while(temp->next){
+        temp=temp->next;
+    }
+    temp->next=newnode;
+    
+}
+
+//5 delete from front
+
+void deletefromFront(Node* &head){
+    Node* temp=head;
+    head=temp->next;
+    delete(temp);
+}
+
+//6 delete from tail
+
+void deltefromTail(Node* &head){
+    if(head==NULL){
+        return;
+    }
+    if(head->next==NULL){
+        delete head;
+        head=NULL;
+        return;
+    }
+    Node* temp=head;
+    while(temp->next->next!=NULL){
+        temp=temp->next;
+    }
+    delete temp->next;
+    temp->next=NULL;
+}
+
+
+int main(){
+    Linkedlist ll;
+    ll.insertVal(5);
+    ll.insertVal(6);
+    ll.insertVal(3);
+    ll.insertVal(9);
+    ll.insertVal(1);
+    ll.display();
+    
+    //1 length of linkedlist
+    lengthoflinkedlist(ll.head);
+    
+    //2 search the element
+    cout<<searchelement(ll.head,3);
+    
+    //3 insert at front
+    
+    insertatfront(ll.head , 5);
+    ll.display();
+    
+    
+    //4 insert at tail
+    
+    insertattail(ll.head,10);
+    ll.display();
+    
+    //5 delete from front
+    
+    deletefromFront(ll.head);
+    ll.display();
+    
+    //6 delete fron tail
+    
+    deltefromTail(ll.head);
+    ll.display();
+    return 0;
+}
