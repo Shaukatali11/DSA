@@ -31,3 +31,5 @@ A priority queue is a data structure where each element has a priority, and the 
 Q9. What are the differences between a stack and a queue?
 Stack: LIFO (Last In, First Out). Operations: push, pop, top.
 Queue: FIFO (First In, First Out). Operations: enqueue, dequeue, front.
+
+
