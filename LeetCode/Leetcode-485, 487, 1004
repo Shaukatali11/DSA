@@ -1,0 +1,111 @@
+Here we are discuss the consecutive one diffrent diffrent problem of leetcode.
+
+485. Max Consecutive Ones:
+-------<>---------<>----------<>---------<>----------
+Given a binary array nums, return the maximum number of consecutive 1's in the array.
+Example 1:
+
+Input: nums = [1,1,0,1,1,1]
+Output: 3
+Explanation: The first two digits or the last three digits are consecutive 1s. The maximum number of consecutive 1s is 3.
+
+Solution:-
+<>-----<>---<>-----<>----<>
+
+class Solution {
+public:
+    int findMaxConsecutiveOnes(vector<int>& nums) {
+        int maxi=0;
+        int count=0;
+        for(int i=0;i<nums.size() ; i++){
+            if(nums[i]==1){
+                count++;
+                maxi=max(maxi,count);
+            }
+            else{
+                count=0;
+            }
+        }
+        return maxi;
+    }
+};
+
+487. Max Consecutive Ones II
+--------------------<>----------------<>-------------<>------------
+
+Suppose we have a binary array; we have to find the maximum number of consecutive 1s in this array if we can flip at mostone 0.
+
+So, if the input is like [1,0,1,1,0], then the output will be 4 because if we flip the first zero will get the maximum number
+of consecutive 1s. After flipping, the maximum number of consecutive 1s is 4.
+
+
+Solution:-
+<>------<>-----<>-----<>
+
+int findMaxConsecutiveOnes(vector<int>& nums) {
+    int maxCount = 0;
+    int zeroCount = 0;
+    int left = 0;
+
+    for (int right = 0; right < nums.size(); ++right) {
+        if (nums[right] == 0) {
+            zeroCount++;
+        }
+
+        while (zeroCount > 1) {
+            if (nums[left] == 0) {
+                zeroCount--;
+            }
+            left++;
+        }
+
+        maxCount = max(maxCount, right - left + 1);
+    }
+
+    return maxCount;
+}
+
+int main() {
+    vector<int> arr = {1, 0, 1, 1, 0};
+    int result = findMaxConsecutiveOnes(arr);
+    cout << "The maximum number of consecutive 1s is: " << result << endl;
+    return 0;
+}
+
+
+
+1004. Max Consecutive Ones III
+--------------<>----------------<>----------------<>----------<>
+Given a binary array nums and an integer k, return the maximum number of consecutive 1's in the array if you can flip at 
+most k 0's.
+
+Example 1:
+Input: nums = [1,1,1,0,0,0,1,1,1,1,0], k = 2
+Output: 6
+Explanation: [1,1,1,0,0,1,1,1,1,1,1]
+Bolded numbers were flipped from 0 to 1. The longest subarray is underlined.
+
+
+
+Solution:-
+----<>-----<>-----<>
+
+class Solution {
+public:
+    int longestOnes(vector<int>& nums, int k) {
+        int ans = -1; 
+        int head = 0, tail = 0;
+
+        for (head = 0; head < nums.size(); head++) {
+            if (nums[head] == 0) k--;
+            while (k < 0) {
+                if (nums[tail] == 0) k++;
+                tail++;
+            }
+            ans = max(ans, head - tail + 1); 
+        }
+
+        return ans == -1 ? 0 : ans; 
+    }
+};
+
