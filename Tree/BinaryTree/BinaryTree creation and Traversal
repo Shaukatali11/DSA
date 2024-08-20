@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node {
+public:
+    int val;
+    Node* left;
+    Node* right;
+    
+    Node(int data) {
+        val = data;
+        left = NULL;
+        right = NULL;
+    }
+};
+
+Node* binaryTree() {
+    int x;
+    cin >> x;
+    
+    if (x == -1) {
+        return NULL;
+    }
+    
+    Node* temp = new Node(x);
+    temp->left = binaryTree();
+    temp->right = binaryTree();
+    return temp;
+}
+
+void preorderTra(Node* root) {
+    if (root == NULL) {
+        return;
+    }
+    cout << root->val << " ";
+    preorderTra(root->left);
+    preorderTra(root->right);
+}
+
+int main() {
+    cout << "Enter root node: ";
+    Node* root = binaryTree();
+    preorderTra(root);
+    return 0;
+}
