@@ -1,0 +1,275 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Node{
+    public:
+    int val;
+    Node* left;
+    Node* right;
+    Node(int data){
+        val=data;
+        left=NULL;
+        right=NULL;
+    }
+};
+
+void preorder(Node* root){
+    if(root==NULL){
+        return;
+    }
+    cout<<root->val<<" ";
+    preorder(root->left);
+    preorder(root->right);
+}
+
+void levelordertraversal(Node* root){
+    if(root==NULL){
+        return;
+    }
+    queue<Node*>q;
+    q.push(root);
+    
+    while(!q.empty()){
+        int n=q.size();
+        for(int i=0;i<n;i++){
+            Node* temp=q.front();
+            q.pop();
+            cout<<temp->val<<" ";
+            
+            if(temp->left){
+                q.push(temp->left);
+            }
+            if(temp->right){
+                q.push(temp->right);
+            }
+            
+        }
+    }
+}
+
+void leftView(Node* root){
+    if(root==NULL){
+        return;
+    }
+    queue<Node*>q;
+    q.push(root);
+    
+    while(!q.empty()){
+        int n=q.size();
+        for(int i=0;i<n;i++){
+            Node* temp=q.front();
+            q.pop();
+            if(i==0){
+                cout<<temp->val<<" ";
+            }
+            if(temp->left){
+                q.push(temp->left);
+            }
+            if(temp->right){
+                q.push(temp->right);
+            }
+            
+        }
+    }
+}
+
+
+void rightView(Node* root){
+    if(root==NULL){
+        return;
+    }
+    queue<Node*>q;
+    q.push(root);
+    
+    while(!q.empty()){
+        int n=q.size();
+        for(int i=0;i<n;i++){
+            Node* temp=q.front();
+            q.pop();
+            if(i==n-1){
+                cout<<temp->val<<" ";
+            }
+            if(temp->left){
+                q.push(temp->left);
+            }
+            if(temp->right){
+                q.push(temp->right);
+            }
+            
+        }
+    }
+}
+
+
+void bottomView(Node* root){
+    map<int,int>hmap;
+    if(root==NULL){
+        return;
+    }
+    queue<pair<Node*,int>>que;
+    que.push({root , 0});
+    
+    while(!que.empty()){
+        auto curr=que.front();
+        que.pop();
+        
+        Node* temp=curr.first;
+        int dist=curr.second;
+        
+        hmap[dist]=temp->val;
+        
+            if(temp->left){
+                que.push({temp->left , dist-1});
+            }
+            if(temp->right){
+                que.push({temp->right , dist+1});
+            }
+            
+        }
+        for(auto it:hmap){
+            cout<<it.second<<" ";
+        }
+    }
+    
+void topView(Node* root){
+    map<int,int>hmap;
+    if(root==NULL){
+        return;
+    }
+    queue<pair<Node*,int>>que;
+    que.push({root , 0});
+    
+    while(!que.empty()){
+        auto curr=que.front();
+        que.pop();
+        
+        Node* temp=curr.first;
+        int dist=curr.second;
+        if(hmap.find(dist) == hmap.end()){
+            hmap[dist]=temp->val;
+        }
+            if(temp->left){
+                que.push({temp->left , dist-1});
+            }
+            if(temp->right){
+                que.push({temp->right , dist+1});
+            }
+            
+        }
+        for(auto it:hmap){
+            cout<<it.second<<" ";
+        }
+    }
+    
+void verticalTra(Node* &root){
+    map<int,vector<int>>hmap;
+    if(root==NULL){
+        return;
+    }
+    queue<pair<Node*,int>>que;
+    que.push({root , 0});
+    
+    while(!que.empty()){
+        auto curr=que.front();
+        que.pop();
+        
+        Node* temp=curr.first;
+        int dist=curr.second;
+        
+        hmap[dist].push_back(temp->val);
+        
+            if(temp->left){
+                que.push({temp->left , dist-1});
+            }
+            if(temp->right){
+                que.push({temp->right , dist+1});
+            }
+            
+        }
+        for(auto it:hmap){
+            for(auto value : it.second)
+                cout<<value<<" ";
+        }
+    }
+    
+    void digonaltraversal(Node* &root){
+    map<int,vector<int>>hmap;
+    if(root==NULL){
+        return;
+    }
+    queue<pair<Node*,int>>que;
+    que.push({root , 0});
+    
+    while(!que.empty()){
+        auto curr=que.front();
+        que.pop();
+        
+        Node* temp=curr.first;
+        int dist=curr.second;
+        
+        hmap[dist].push_back(temp->val);
+        
+            if(temp->left){
+                que.push({temp->left , dist+1});
+            }
+            if(temp->right){
+                que.push({temp->right , dist});
+            }
+            
+        }
+        for(auto it:hmap){
+            for(auto value : it.second)
+                cout<<value<<" ";
+        }
+    }
+int maxGain(Node* &root , int &maxSum){
+    if(root==NULL){
+        return 0;
+    }
+    int leftSum=max(maxGain(root->left,maxSum) , 0);
+    int rightSum=max(maxGain(root->right,maxSum),0);
+    int totalSum=root->val+leftSum+rightSum;
+    maxSum=max(totalSum,maxSum);
+    return root->val+max(leftSum,rightSum);
+    
+}
+int maxPathSum(Node* root){
+    if(root==NULL){
+        return 0;
+    }
+    int maxSum=INT_MIN;
+    maxGain(root,maxSum);
+    return maxSum;
+}
+
+int main(){
+    Node* root=new Node(3);
+    root->left=new Node(4);
+    root->right=new Node(5);
+    root->left->left=new Node(6);
+    root->left->right=new Node(9);
+    root->right->left=new Node(4);
+    root->right->right=new Node(7);
+    
+    cout<<"preorder traversal : ";
+    preorder(root);
+    cout<<"\nlevelorder traversal : ";
+    levelordertraversal(root);
+    cout<<"\nleftiew of tree : ";
+    leftView(root);
+    cout<<"\nrightView of tree : ";
+    rightView(root);
+    cout<<"\nbottom view of tree : ";
+    bottomView(root);
+    cout<<"\ntop View of tree : ";
+    topView(root);
+    cout<<"\nvertical map : ";
+    verticalTra(root);
+    cout<<"\ndigonal traversal of tree : ";
+    digonaltraversal(root);
+    cout<<"\nmaximum path sum : ";
+    cout<<maxPathSum(root);
+    
+    
+    return 0;
+}
